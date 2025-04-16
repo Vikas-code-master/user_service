@@ -1,16 +1,17 @@
 package com.vg.userservice.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Builder;
-import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-@Builder
+import lombok.*;
+
 @Data
-@Document(collection = "users")
+@NoArgsConstructor
+@Entity
+@Table(name = "user")
 public class User {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @NotBlank(message = "Username is mandatory")
     private String username;
     @NotBlank(message = "password is mandatory")
